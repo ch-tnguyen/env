@@ -1,0 +1,9 @@
+#!/bin/bash
+
+read -r -p "Are you sure? [y/N] " response
+case $response in
+    [yY][eE][sS]|[yY]) 
+        git branch -r --merged | grep -v '>' | grep -v 'master' | sed 's/origin\///' | while read branch ; do git push --delete origin $branch ; done
+        ;;
+    *)
+esac
